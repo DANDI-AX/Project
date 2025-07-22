@@ -1,4 +1,4 @@
-# 🌐 Dandi Mulugeta – Project Portfolio
+# 🌐 Dandi Mulugeta – Project 1
 
 Welcome to my project repository! I'm **Dandi Mulugeta**, a high school student and passionate web developer from Ethiopia, with a deep interest in **STEM**, **aerospace engineering**, and **problem-solving through technology**.
 
