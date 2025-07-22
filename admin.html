@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+  <section class="admin-login-section">
+    <h2 data-translate="admin_login_title">Admin Login</h2>
+
+    <form id="admin-login-form">
+      <label for="username" data-translate="admin_username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter admin username" required />
+
+      <label for="password" data-translate="admin_password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+      <button type="submit" id="admin-login-btn" data-translate="btn_login">Login</button>
+
+      <p id="login-error" class="error-message" style="display:none;" data-translate="login_failed">Invalid credentials</p>
+    </form>
+  </section>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('admin-login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Frontend dummy check - replace with real backend call later
+      if (username === 'admin' && password === 'password123') {
+        window.location.href = 'dashboard.html';
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-translate="dashboard_title">Admin Dashboard</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <nav class="admin-nav">
+    <a href="dashboard.html" class="active" data-translate="nav_dashboard">Dashboard</a>
+    <a href="booking-panel.html" data-translate="nav_bookings">Bookings</a>
+    <a href="feedback-panel.html" data-translate="nav_feedback">Feedback</a>
+    <a href="admin.html" id="logout-link" data-translate="nav_logout">Logout</a>
+
+    <!-- Light/Dark mode toggle -->
+    <button id="theme-toggle">🌙</button>
+
+    <!-- Language dropdown -->
+   
+  </nav>
+
+  <main class="dashboard-container">
+    <h1 data-translate="dashboard_welcome">Welcome, Admin</h1>
+
+    <div class="dashboard-cards">
+      <div class="dashboard-card">
+        <h2 id="total-bookings" data-translate="dashboard_total_bookings">Total Bookings: --</h2>
+        <a href="booking-panel.html" class="dashboard-link" data-translate="dashboard_view_bookings">View Bookings</a>
+      </div>
+
+      <div class="dashboard-card">
+        <h2 id="total-feedbacks" data-translate="dashboard_total_feedbacks">Total Feedback: --</h2>
+        <a href="feedback-panel.html" class="dashboard-link" data-translate="dashboard_view_feedbacks">View Feedback</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    toggleBtn.textContent = "☀️";
+  } else {
+    body.classList.remove("dark");
+    toggleBtn.textContent = "🌙";
+  }
+
+  // Toggle theme on button click
+  toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+      toggleBtn.textContent = "☀️";
+      localStorage.setItem("theme", "dark");
+    } else {
+      toggleBtn.textContent = "🌙";
+      localStorage.setItem("theme", "light");
+    }
+  });
+});
+
+  </script>
+</body>
+</html>

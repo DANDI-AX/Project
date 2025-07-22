@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Booking Panel</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <nav class="admin-nav">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="booking-panel.html" class="active">Bookings</a>
+    <a href="admin.html" id="logout-link" data-translate="nav_logout">Logout</a>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+  </nav>
+
+  <main class="dashboard-container">
+    <h1>Booking Management</h1>
+    <p>View and manage all appointment bookings.</p>
+
+    <!-- 🔍 Search Field -->
+    <input type="text" id="booking-search" placeholder="Search bookings..." class="dashboard-search" />
+
+    <div class="table-wrapper">
+      <table id="booking-table" class="dashboard-table">
+        <thead>
+          <tr>
+            <th data-sort="0">No.</th>
+            <th data-sort="1">Full Name</th>
+            <th data-sort="2">Email</th>
+            <th data-sort="3">Phone</th>
+            <th data-sort="4">Age</th>
+            <th data-sort="5">Department</th>
+            <th data-sort="6">Gender</th>
+            <th data-sort="7">Date</th>
+            <th data-sort="8">Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Sena Ali Mohammed</td>
+            <td>sena@gmail.com</td>
+            <td>+251987654321</td>
+            <td>26</td>
+            <td>Pregnancy</td>
+            <td>Female</td>
+            <td>2025-07-12</td>
+            <td>10:30 AM</td>
+            <td>
+              <button class="btn-review">Mark Reviewed</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Zulekya Nuru Abdu</td>
+            <td>zuleyjkagmail.com</td>
+            <td>+251987654321</td>
+            <td>23</td>
+            <td>Pregnancy</td>
+            <td>Female</td>
+            <td>2025-07-02</td>
+            <td>10:30 AM</td>
+            <td>
+              <button class="btn-review">Mark Reviewed</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Ali Ahmed Noor</td>
+            <td>ali@gmail.com</td>
+            <td>+251987454321</td>
+            <td>26</td>
+            <td>General</td>
+            <td>Male</td>
+            <td>2025-06-12</td>
+            <td>10:30 AM</td>
+            <td>
+              <button class="btn-review">Mark Reviewed</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- === THEME TOGGLE SCRIPT === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        body.classList.add("dark");
+        toggleBtn.textContent = "☀️";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        const isDark = body.classList.contains("dark");
+        toggleBtn.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+    });
+  </script>
+
+  <!-- === SEARCH + SORT FUNCTIONALITY === -->
+  <script>
+    // SEARCH
+    const searchInput = document.getElementById("booking-search");
+    const rows = document.querySelectorAll("#booking-table tbody tr");
+
+    searchInput.addEventListener("input", function () {
+      const term = this.value.toLowerCase();
+      rows.forEach((row) => {
+        row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
+      });
+    });
+
+    // SORT
+    const headers = document.querySelectorAll("#booking-table th[data-sort]");
+    let ascending = true;
+
+    headers.forEach((th) => {
+      th.addEventListener("click", () => {
+        const index = th.dataset.sort;
+        const table = th.closest("table");
+        const tbody = table.querySelector("tbody");
+        const rowsArray = Array.from(tbody.querySelectorAll("tr"));
+
+        rowsArray.sort((a, b) => {
+          const aText = a.children[index].textContent.trim().toLowerCase();
+          const bText = b.children[index].textContent.trim().toLowerCase();
+          return ascending
+            ? aText.localeCompare(bText, undefined, { numeric: true })
+            : bText.localeCompare(aText, undefined, { numeric: true });
+        });
+
+        ascending = !ascending;
+        rowsArray.forEach((row) => tbody.appendChild(row));
+      });
+    });
+  </script>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

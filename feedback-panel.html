@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Feedback Panel</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <nav class="admin-nav">
+    <a href="dashboard.html">Dashboard</a>
+    
+    <a href="booking-panel.html">Bookings</a>
+    <a href="feedback-panel.html" class="active">Feedbacks</a>
+    <a href="admin.html" id="logout-link" data-translate="nav_logout">Logout</a>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+  </nav>
+
+  <main class="dashboard-container">
+    <h1>Feedback Management</h1>
+    <p>View and manage user feedback submissions.</p>
+
+    <!-- ✅ Wrapped table for horizontal scroll on mobile -->
+    <div class="table-wrapper">
+      <table id="feedback-table" class="dashboard-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Message</th>
+            <th>Date Submitted</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Feedback rows will be dynamically injected here -->
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td>+251912345678</td>
+            <td>Great service! Keep it up.</td>
+            <td>2025-07-10</td>
+            <td>
+              <button class="btn-review">Mark Reviewed</button>
+              <button class="btn-delete">Delete</button>
+            </td>
+          </tr>
+          <!-- More rows -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        body.classList.add("dark");
+        toggleBtn.textContent = "☀️";
+      } else {
+        body.classList.remove("dark");
+        toggleBtn.textContent = "🌙";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark");
+
+        if (body.classList.contains("dark")) {
+          toggleBtn.textContent = "☀️";
+          localStorage.setItem("theme", "dark");
+        } else {
+          toggleBtn.textContent = "🌙";
+          localStorage.setItem("theme", "light");
+        }
+      });
+    });
+  </script>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

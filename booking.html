@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book an Appointment</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <!-- ========== NAVIGATION BAR ========== -->
+  <header>
+    <div class="nav-container">
+      <h1 id="site-name">Hope Hospital</h1>
+
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="index.html" id="nav-home">Home</a></li>
+          <li><a href="services.html" id="nav-services">Services</a></li>
+          <li><a href="doctors.html" id="nav-doctors">Doctors</a></li>
+          <li><a href="booking.html" id="nav-booking">Book</a></li>
+          <li><a href="feedback.html" id="nav-feedback">Feedback</a></li>
+          <li><a href="contact.html" id="nav-contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <select id="language-select" title="Select Language">
+            <option value="en">🇬🇧 English</option>
+            <option value="om">🌍 Afaan Oromo</option>
+            <option value="am">🇪🇹 Amharic</option>
+          </select>
+
+          <button id="mode-toggle" title="Toggle Dark/Light Mode">🌙</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== BOOKING FORM ========== -->
+  <section class="booking-section">
+    <h2 id="booking-title">Book an Appointment</h2>
+    <p id="booking-intro">Fill out the form to schedule your visit</p>
+
+    <form id="booking-form" method="post" action="#">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+      <label for="fname">Father's Name</label>
+      <input type="text" id="fname" name="fname" placeholder="Father's name" required />
+
+      <label for="gname">Grandfather's Name</label>
+      <input type="text" id="gname" name="gname" placeholder="Grandfather's name" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" required />
+
+      <label for="email">Email (optional)</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" />
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" placeholder="e.g. 25" min="0" max="120" required />
+
+      <fieldset>
+        <legend>Gender</legend>
+        <label><input type="radio" name="gender" value="male" required /> Male</label>
+        <label><input type="radio" name="gender" value="female" required /> Female</label>
+      </fieldset>
+
+      <label for="department">Department</label>
+      <select id="department" name="department" required>
+        <option value="" disabled selected>-- Choose a Department --</option>
+        <option value="general">General</option>
+        <option value="kids">Kids</option>
+        <option value="pregnancy">Pregnancy</option>
+        <option value="cardio">Cardiology</option>
+      </select>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="time">Time</label>
+      <input type="time" id="time" name="time" required />
+
+      <button type="submit" id="submit-btn">Submit Booking</button>
+    </form>
+
+    <script src="booking.js"></script>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
